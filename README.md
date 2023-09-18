@@ -1,0 +1,1 @@
+Small desktop personal contact manager using Avalonia UI.
