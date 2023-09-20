@@ -2,17 +2,22 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+			 xmlns:vm="using:willardcrm.ViewModels"
              mc:Ignorable="d" d:DesignWidth="200" d:DesignHeight="450"
-             x:Class="willardcrm.Views.CRMView">
+             x:Class="willardcrm.Views.CRMView"
+			 x:DataType="vm:ContactViewModel">
   <DockPanel>
 	  <Button DockPanel.Dock="Bottom"
 			  HorizontalAlignment="Stretch"
 			  HorizontalContentAlignment="Center">
 		  Add Contact
 	  </Button>
-	  <StackPanel>
-		  <TextBlock>Contact 1</TextBlock>
-		  <TextBlock>Contact 2</TextBlock>
-	  </StackPanel>
+	  <ItemsControl ItemsSource="{Binding ListItems}">
+		  <ItemsControl.ItemTemplate>
+			  <DataTemplate>
+				  <CheckBox Margin="4" IsChecked="{Binding IsChecked}" Content="{Binding Name}" />
+			  </DataTemplate>
+		  </ItemsControl.ItemTemplate>
+	  </ItemsControl>
   </DockPanel>
 </UserControl>

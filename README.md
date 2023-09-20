@@ -1,1 +1,1 @@
-Small desktop personal contact manager using Avalonia UI.
+Small desktop personal contact manager using Avalonia UI. I'm piggybacking off of [Avalonia's tutorial for a to-do list application](https://docs.avaloniaui.net/docs/next/tutorials/todo-list-app/) to jumpstart it for use as a CRM.
