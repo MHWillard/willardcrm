@@ -9,8 +9,10 @@
   <DockPanel>
 	  <Button DockPanel.Dock="Bottom"
 			  HorizontalAlignment="Stretch"
-			  HorizontalContentAlignment="Center">
-		  Add Contact
+			  HorizontalContentAlignment="Center"
+			  x:CompileBindings="False"
+			  Command="{Binding $parent[Window].DataContext.AddItem}">
+		  Add Item
 	  </Button>
 	  <ItemsControl ItemsSource="{Binding ListItems}">
 		  <ItemsControl.ItemTemplate>

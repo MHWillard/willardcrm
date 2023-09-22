@@ -11,7 +11,8 @@ namespace willardcrm.ViewModels
 {
     public class ContactViewModel : ViewModelBase
     {
-        public ContactViewModel(IEnumerable<ContactItem> items) { 
+        public ContactViewModel(IEnumerable<ContactItem> items)
+        {
             ListItems = new ObservableCollection<ContactItem>(items);
         }
 
