@@ -2,9 +2,9 @@ using Avalonia.Controls;
 
 namespace willardcrm.Views
 {
-    public partial class CRMView : UserControl
+    public partial class ContactListView : UserControl
     {
-        public CRMView()
+        public ContactListView()
         {
             InitializeComponent();
         }

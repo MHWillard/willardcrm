@@ -5,18 +5,18 @@ namespace willardcrm.ViewModels
 {
     public class MainWindowViewModel : ViewModelBase
     {
-        public ViewModelBase _contentViewModel;
+        private ViewModelBase _contentViewModel;
 
         //this has a dependency on the ToDoListService
 
         public MainWindowViewModel()
         {
-            var service = new ContactService();
-            ToDoList = new ContactViewModel(service.GetItems());
+            var service = new ContactListService();
+            ToDoList = new ContactListViewModel(service.GetItems());
             _contentViewModel = ToDoList;
         }
 
-        public ContactViewModel ToDoList { get; }
+        public ContactListViewModel ToDoList { get; }
 
         public ViewModelBase ContentViewModel
         {

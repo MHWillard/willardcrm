@@ -7,6 +7,6 @@
         x:Class="willardcrm.Views.MainWindow"
         x:DataType="vm:MainWindowViewModel"
         Icon="/Assets/avalonia-logo.ico"
-        Title="Avalonia To Do List"
+        Title="Willard CRM"
         Content="{Binding ContentViewModel}">
 </Window>
