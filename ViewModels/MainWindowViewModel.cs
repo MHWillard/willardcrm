@@ -1,4 +1,7 @@
 ﻿using ReactiveUI;
+using System;
+using System.Reactive.Linq;
+using willardcrm.DataModel;
 using willardcrm.Services;
 
 namespace willardcrm.ViewModels
@@ -12,11 +15,11 @@ namespace willardcrm.ViewModels
         public MainWindowViewModel()
         {
             var service = new ContactListService();
-            ToDoList = new ContactListViewModel(service.GetItems());
-            _contentViewModel = ToDoList;
+            ContactList = new ContactListViewModel(service.GetItems());
+            _contentViewModel = ContactList;
         }
 
-        public ContactListViewModel ToDoList { get; }
+        public ContactListViewModel ContactList { get; }
 
         public ViewModelBase ContentViewModel
         {
@@ -26,7 +29,22 @@ namespace willardcrm.ViewModels
 
         public void AddItem()
         {
-            ContentViewModel = new AddItemViewModel();
+            AddItemViewModel addItemViewModel = new();
+
+            Observable.Merge(
+                addItemViewModel.OkCommand,
+                addItemViewModel.CancelCommand.Select(_ => (ContactItem?)null))
+                .Take(1)
+                .Subscribe(newItem =>
+                { 
+                    if (newItem != null)
+                    {
+                        ContactList.ListItems.Add(newItem);
+                    }
+                    ContentViewModel = ContactList;
+                });
+
+            ContentViewModel = addItemViewModel;
         }
     }
 }
