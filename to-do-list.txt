@@ -1,0 +1,13 @@
+WILLARDCRM (DESKTOP CONTACT MANAGER) TO-DO LIST
+
+- List contacts on left side panel.
+- Have contact details appear on right-side panel (they appear when you click on a contact name).
+- Buttons to add and delete contacts.
+- Right-side contact details let you edit any field.
+- Contact details: name, relationship, interests, notes
+- Updates: you can put an update on each contact which marks the current date and lets you write a note, to serve as a last contact date.
+- Can edit or delete each update.
+
+
+NOTES
+- This is more of a GUI and intended for reminder automation, but the actual data will probably be in JSON format, this way we can grab key/value pairs and process appropriately, and won't have to worry about a DB.
