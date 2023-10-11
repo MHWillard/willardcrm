@@ -9,7 +9,7 @@ namespace Tests
         public void Test_ConvertContactToJSON()
         {
             //arrange
-            JSONContact testContact = new JSONContact();
+            ContactItem testContact = new ContactItem();
 
             //act
             var testJSON = testContact.GetJSON();

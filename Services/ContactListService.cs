@@ -5,11 +5,11 @@ namespace willardcrm.Services
 {
     public class ContactListService
     {
-        public IEnumerable<ContactItem> GetItems() => new[]
+        public IEnumerable<ToDoItem> GetItems() => new[]
         {
-            new ContactItem { Name = "Friend 1" },
-            new ContactItem { Name = "Friend 2" },
-            new ContactItem { Name = "Enemy 1", IsChecked = true },
+            new ToDoItem { Name = "Friend 1" },
+            new ToDoItem { Name = "Friend 2" },
+            new ToDoItem { Name = "Enemy 1", IsChecked = true },
         };
     }
 }

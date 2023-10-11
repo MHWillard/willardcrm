@@ -1,11 +1,17 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace willardcrm.DataModel
 {
     public class ContactItem
     {
-        public string Name { get; set; } = String.Empty;
-        public bool IsChecked { get; set; }
+        public string _name { get; set; } = String.Empty;
+        public string _relationship { get; set; } = String.Empty;
+        public string _interests { get; set; } = String.Empty;
+        public string _updates { get; set; } = String.Empty; //this has to be a list
 
         public string GetJSON()
         {
