@@ -5,11 +5,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using willardcrm.DataModel;
+using willardcrm.Services;
 
 namespace Tests
 {
     public class IntTests
     {
+        [Fact]
         public void Test_CreateAndSaveNewContact() { 
         //arrange
         //act
@@ -23,16 +25,18 @@ namespace Tests
             //to verify, he clicks on Bill's name. It's highlighted, and the right pane changes to display the loaded contact information in a neat column.
 
             ContactItem testContact = new ContactItem();
-            testContact.setName("Bill Grogs");
-            testContact.setRelationship("Friend");
-            testContact.setInterests("roleplaying games, history");
-            testContact.setEmail("bill@billgrognard.com");
-            testContact.setNumber("555.782.9843");
-            testContact.setNotes("Bill's website is billgrognard.com. Interesting articles about programming, roleplaying games, and why he hates traffic.");
+            testContact._name = "Bill Grogs";
+            testContact._relationship = "Friend";
+            testContact._interests = "roleplaying games, history";
+            testContact._email = "bill@billgrognard.com";
+            testContact._phone = "555.782.9843";
+            testContact._notes = "Bill's website is billgrognard.com. Interesting articles about programming, roleplaying games, and why he hates traffic.";
 
-            testContact.saveContact();
+            ContactHandler contactHandler = new ContactHandler();
 
-            string testJSON = ContactDirectory.getContactJSON("Bill Grogs");
+            contactHandler.saveContact(testContact);
+
+            string testJSON = contactHandler.GetContactJSON("Bill Grogs");
 
             testJSON.Should().Be("{\"name\": \"Bill Grogs\",\"relationship\": \"Friend\",\"interests\": \"roleplaying games, history\",\"email:\"bill@billgrognard.com\",\"number\":\"555.782.9843\",\"notes\":\"Bill's website is billgrognard.com. Interesting articles about programming, roleplaying games, and why he hates traffic.\",\"updates:\" []}");
 
