@@ -17,14 +17,15 @@ namespace willardcrm.Services
             //return "{\"name\": \"Bill Grogs\",\"relationship\": \"Friend\",\"interests\": \"roleplaying games, history\",\"email:\"bill@billgrognard.com\",\"number\":\"555.782.9843\",\"notes\":\"Bill's website is billgrognard.com. Interesting articles about programming, roleplaying games, and why he hates traffic.\",\"updates:\" []}";
             //open JSON file
             //string output = JsonConvert.SerializeObject(dummyJSON);
-            string output = File.ReadAllText("./TestingData/testBill.json");
-            Trace.WriteLine(output);
+            string output = File.ReadAllText("../../../../Contacts/testContact.json");
             return output;
         }
 
         public void saveContact(ContactItem contact)
         {
-            Trace.WriteLine("contact saved");
+            string output = JsonConvert.SerializeObject(contact);
+            string absolute = Directory.GetParent(Directory.GetCurrentDirectory()).FullName; //get home directory
+            File.WriteAllText(absolute + "/Contacts/testContact.json", output);
             //take this particular contact info and write it to a JSON object or string object
             //get each property
             //convert into .json

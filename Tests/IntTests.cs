@@ -6,11 +6,20 @@ using System.Text;
 using System.Threading.Tasks;
 using willardcrm.DataModel;
 using willardcrm.Services;
+using Xunit;
+using Xunit.Abstractions;
 
 namespace Tests
 {
     public class IntTests
     {
+        private readonly ITestOutputHelper output;
+
+        public IntTests(ITestOutputHelper output)
+        {
+            this.output = output;
+        }
+
         [Fact]
         public void Test_CreateAndSaveNewContact() { 
         //arrange
@@ -37,6 +46,8 @@ namespace Tests
             contactHandler.saveContact(testContact);
 
             string testJSON = contactHandler.GetContactJSON("Bill Grogs");
+
+            output.WriteLine(testJSON);
 
             testJSON.Should().Be("{\"name\": \"Bill Grogs\",\"relationship\": \"Friend\",\"interests\": \"roleplaying games, history\",\"email:\"bill@billgrognard.com\",\"number\":\"555.782.9843\",\"notes\":\"Bill's website is billgrognard.com. Interesting articles about programming, roleplaying games, and why he hates traffic.\",\"updates:\" []}");
 
