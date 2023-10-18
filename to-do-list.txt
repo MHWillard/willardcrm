@@ -15,10 +15,10 @@ NOTES
 - This is more of a GUI and intended for reminder automation, but the actual data will probably be in JSON format, this way we can grab key/value pairs and process appropriately, and won't have to worry about a DB.
 
 **********
-A1 Learn how to write to local JSON file in a folder.
-A2 Test: write keys/values to local folder with JSON for contact.
-B1 Learn how to wrok with local data files in model for MVVM application.
-B2 Set up new item view with fields for adding new contacts.
-B3 Write and run tests to confirm fields.
-C1 Test: save new contact form as local JSON.
-D1 Test: given local contact file, when I click on name in left panel, details for that contact and fetched from local data and appear in right pane.
+- Contacts get written as JSON files to local app directory.
+- App can read local JSON files in the app directory and convert them to contactItems or grab their values.
+- The left pane lists every contact in the local directory.
+- The right pane lists the details of the contact, pulled from the JSON.
+- Selecting a contact on the left pane loads the details on the right.
+- Clicking the Add button lets you fill out a form for contact information and it saves the contact.
+- Selecting a contact and clicking Delete deletes the contact and the local JSON.

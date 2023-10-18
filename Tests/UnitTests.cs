@@ -1,5 +1,6 @@
 using FluentAssertions;
 using willardcrm.DataModel;
+using willardcrm.Services;
 
 namespace Tests
 {
@@ -10,12 +11,21 @@ namespace Tests
         {
             //arrange
             ContactItem testContact = new ContactItem();
+            testContact._name = "Bill Grogs";
+            testContact._relationship = "Friend";
+            testContact._interests = "roleplaying games, history";
+            testContact._email = "bill@billgrognard.com";
+            testContact._phone = "555.782.9843";
+            testContact._notes = "Bill's website is billgrognard.com. Interesting articles about programming, roleplaying games, and why he hates traffic.";
+
+            ContactHandler contactHandler = new ContactHandler();
 
             //act
-            var testJSON = testContact.GetJSON();
+            contactHandler.saveContact(testContact);
+            string output = contactHandler.GetContactJSON("Bill Grogs");
 
             //assert
-            testJSON.Should().Be("{\"name\": \"Joe Schmo\",\"relationship\": \"friend\",\"interests\": \"football, hockey\",\"updates:\" [{\"id\": 1,\"date\": \"10-09-2023\",\"comment\": \"met Joe\"},{\"id\": 2,\"date\": \"10-10-2023\",\"comment\": \"helped Joe move\"},]}");
+            output.Should().Be("{\"_name\":\"Bill Grogs\",\"_relationship\":\"Friend\",\"_interests\":\"roleplaying games, history\",\"_email\":\"bill@billgrognard.com\",\"_phone\":\"555.782.9843\",\"_notes\":\"Bill's website is billgrognard.com. Interesting articles about programming, roleplaying games, and why he hates traffic.\"}");
 
         }
     }
