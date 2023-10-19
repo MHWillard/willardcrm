@@ -8,6 +8,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Reflection;
 using willardcrm.DataModel;
+using FluentAssertions.Formatting;
 
 namespace willardcrm.Services
 {
@@ -20,10 +21,16 @@ namespace willardcrm.Services
         }
         public string GetContactJSON(string contactName)
         {
-            //return "{\"name\": \"Bill Grogs\",\"relationship\": \"Friend\",\"interests\": \"roleplaying games, history\",\"email:\"bill@billgrognard.com\",\"number\":\"555.782.9843\",\"notes\":\"Bill's website is billgrognard.com. Interesting articles about programming, roleplaying games, and why he hates traffic.\",\"updates:\" []}";
-            //open JSON file
-            //string output = JsonConvert.SerializeObject(dummyJSON);
-            string output = File.ReadAllText("../../../../Contacts/testContact.json");
+            string output = "";
+            string contactPath = this.GetContactPath();
+            string JSONFilename = contactName + ".json";
+            string fullPath = Path.Combine(contactPath, JSONFilename);
+            if (File.Exists(fullPath)) {
+                output = File.ReadAllText(fullPath);
+            }
+
+            //need to make sure to return an error or do a handler in case this is blank
+            
             return output;
         }
 
@@ -33,12 +40,7 @@ namespace willardcrm.Services
             string contactPath = this.GetContactPath();
             string JSONfilename = contact._name + ".json";
             string fullPath = Path.Combine(contactPath, JSONfilename);
-            //string absolute = Directory.GetParent(Directory.GetCurrentDirectory()).FullName; //get home directory
             File.WriteAllText(fullPath, output);
-            //take this particular contact info and write it to a JSON object or string object
-            //get each property
-            //convert into .json
-            //dump it into a directory contacts folder to read
         }
     }
 }

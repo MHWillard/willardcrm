@@ -21,10 +21,17 @@ namespace Tests
         }
 
         [Fact]
-        public void Test_CreateAndSaveNewContact() { 
-        //arrange
-        //act
-        //assert
+        public void Test_CreateAndSaveNewContact() {
+
+            //arrange
+            //prep items, empty Contacts folder
+            ContactHandler contactHandler = new ContactHandler();
+            ContactBuilder contactBuilder = new ContactBuilder();
+            List<string> contactProps = new List<string>() {"Bill Grogs", "Friend", "roleplaying games, history", "bill@billgrognard.com", "555.782.9843", "Bill's website is billgrognard.com. Interesting articles about programming, roleplaying games, and why he hates traffic."};
+
+            //act
+            //add contact function: event fires from button click and gets info in fields gathered from form
+            //installs fields accordingly
 
             //clicks Add New Contact
             //sees the form come up: new window, with fields for Name, Relationship, Interests, Email, Phone, and Notes to get started
@@ -33,23 +40,17 @@ namespace Tests
             //the Add Contact window closes and now he's back on the main screen. Bill's contact shows up in the lefthand pane. 
             //to verify, he clicks on Bill's name. It's highlighted, and the right pane changes to display the loaded contact information in a neat column.
 
-            ContactItem testContact = new ContactItem();
-            testContact._name = "Bill Grogs";
-            testContact._relationship = "Friend";
-            testContact._interests = "roleplaying games, history";
-            testContact._email = "bill@billgrognard.com";
-            testContact._phone = "555.782.9843";
-            testContact._notes = "Bill's website is billgrognard.com. Interesting articles about programming, roleplaying games, and why he hates traffic.";
+            ContactItem testContact = contactBuilder.BuildContact(contactProps);
+            //"Bill Grogs";"Friend";"roleplaying games, history""bill@billgrognard.com";"555.782.9843";"Bill's website is billgrognard.com. Interesting articles about programming, roleplaying games, and why he hates traffic.";
 
-            ContactHandler contactHandler = new ContactHandler();
 
             contactHandler.saveContact(testContact);
 
             string testJSON = contactHandler.GetContactJSON("Bill Grogs");
 
-            output.WriteLine(testJSON);
 
-            testJSON.Should().Be("{\"name\": \"Bill Grogs\",\"relationship\": \"Friend\",\"interests\": \"roleplaying games, history\",\"email:\"bill@billgrognard.com\",\"number\":\"555.782.9843\",\"notes\":\"Bill's website is billgrognard.com. Interesting articles about programming, roleplaying games, and why he hates traffic.\",\"updates:\" []}");
+            //assert
+            testJSON.Should().Be("{\"_name\":\"Bill Grogs\",\"_relationship\":\"Friend\",\"_interests\":\"roleplaying games, history\",\"_email\":\"bill@billgrognard.com\",\"_phone\":\"555.782.9843\",\"_notes\":\"Bill's website is billgrognard.com. Interesting articles about programming, roleplaying games, and why he hates traffic.\"}");
 
         }
     }

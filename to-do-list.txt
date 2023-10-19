@@ -15,8 +15,8 @@ NOTES
 - This is more of a GUI and intended for reminder automation, but the actual data will probably be in JSON format, this way we can grab key/value pairs and process appropriately, and won't have to worry about a DB.
 
 **********
-- Contacts get written as JSON files to local app directory.
-- App can read local JSON files in the app directory and convert them to contactItems or grab their values.
+X Contacts get written as JSON files to local app directory.
+~ App can read local JSON files in the app directory and convert them to contactItems or grab their values.
 - The left pane lists every contact in the local directory.
 - The right pane lists the details of the contact, pulled from the JSON.
 - Selecting a contact on the left pane loads the details on the right.
