@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using willardcrm.DataModel;
 using willardcrm.Services;
+using willardcrm.ViewModels;
 using Xunit;
 using Xunit.Abstractions;
 
@@ -47,7 +48,6 @@ namespace Tests
 
             string testJSON = contactHandler.GetContactJSON("Bill Grogs");
 
-
             //assert
             testJSON.Should().Be("{\"_name\":\"Bill Grogs\",\"_relationship\":\"Friend\",\"_interests\":\"roleplaying games, history\",\"_email\":\"bill@billgrognard.com\",\"_phone\":\"555.782.9843\",\"_notes\":\"Bill's website is billgrognard.com. Interesting articles about programming, roleplaying games, and why he hates traffic.\"}");
 
@@ -57,6 +57,35 @@ namespace Tests
             billContact._interests.Should().Be("roleplaying games, history");
             billContact._notes.Should().Be("Bill's website is billgrognard.com. Interesting articles about programming, roleplaying games, and why he hates traffic.");
 
+        }
+
+        [Fact]
+        public void Test_LoadContactListIntoLeftPane() {
+            //given that I have a CRM application, whenever I first open the program or return to the main screen, then the left pane displays a list of all contacts in the Contacts folder by name
+
+            //arrange
+            ///clean out contacts folder
+            ///create three dummy contacts in folder
+            ContactHandler contactHandler = new ContactHandler();
+            string contactPath = contactHandler.GetContactPath();
+            string[] files = Directory.GetFiles(contactPath);
+            foreach (string file in files)
+            {
+                File.Delete(file);
+            }
+
+            //act
+            ///run logic to generate list of items that loads from contacts folder
+            ///run any other logic to push them to left pane view
+            List<ContactItem> contactList = contactHandler.GetAllContactItems();
+
+            var service = new ContactListService();
+            ListItems = new ContactListViewModel(service.GetItems());
+
+
+            //assert
+            ///assert that list of items has names we expect in order we expect
+            ///assert that the view has generated the list in order as expected
         }
     }
 }

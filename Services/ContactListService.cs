@@ -7,6 +7,7 @@ namespace willardcrm.Services
     {
         public IEnumerable<ToDoItem> GetItems() => new[]
         {
+            //gets data from ContactHandler to load
             new ToDoItem { Name = "Friend 1" },
             new ToDoItem { Name = "Friend 2" },
             new ToDoItem { Name = "Enemy 1", IsChecked = true },

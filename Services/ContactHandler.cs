@@ -36,14 +36,12 @@ namespace willardcrm.Services
 
         public ContactItem GetContactItem(string contactName)
         {
-            //look in contacts folder
-            //get contactJSON
-            //new contactItem
-            //load properties into object
-            //return object
             string output = this.GetContactJSON(contactName);
             ContactItem contactItem = JsonConvert.DeserializeObject<ContactItem>(output);
             return contactItem;
+        }
+
+        public List<ContactItem> GetAllContacts() {
         }
 
         public void saveContact(ContactItem contact)
