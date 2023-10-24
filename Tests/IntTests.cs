@@ -67,6 +67,8 @@ namespace Tests
             ///clean out contacts folder
             ///create three dummy contacts in folder
             ContactHandler contactHandler = new ContactHandler();
+            ContactBuilder contactBuilder = new ContactBuilder();
+            
             string contactPath = contactHandler.GetContactPath();
             string[] files = Directory.GetFiles(contactPath);
             foreach (string file in files)
@@ -74,18 +76,54 @@ namespace Tests
                 File.Delete(file);
             }
 
+            ContactItem contactOne = contactBuilder.BuildContact(new Dictionary<string, string>() {
+                {"name", "Bill Grogs"},{"relationship", "Friend"},{"interests", "roleplaying games, history"},{"email", "bill@billgrognard.com"},{"phone", "555.782.9843"},{"notes", "Bill's website is billgrognard.com. Interesting articles about programming, roleplaying games, and why he hates traffic."}
+            });
+            ContactItem contactTwo = contactBuilder.BuildContact(new Dictionary<string, string>() {
+                {"name", "Frank Stone"},{"relationship", "Friend"},{"interests", "roleplaying games, history"},{"email", "frank@stonesthrow.com"},{"phone", "555.782.9843"},{"notes", "Confused him for Frank Stallone."}
+            });
+            ContactItem contactThree = contactBuilder.BuildContact(new Dictionary<string, string>() {
+                {"name", "Bilbo Baggins"},{"relationship", "Friend"},{"interests", "roleplaying games, history"},{"email", "bilbobaggins@helloshire.com"},{"phone", "555.782.9843"},{"notes", "Gets a thousand yard stare whenever you mention any kind of ring - wedding, onion, Sonic, etc."}
+            });
+
+            ContactItem[] array = new ContactItem[3]; array[0] = contactOne; array[1] = contactTwo; array[2] = contactThree;
+            foreach (ContactItem item in array)
+            { 
+                contactHandler.saveContact(item);
+            }
+
             //act
-            ///run logic to generate list of items that loads from contacts folder
-            ///run any other logic to push them to left pane view
+            ///get list of contact items from local folder
+            ///push to ContactListService
             List<ContactItem> contactList = contactHandler.GetAllContactItems();
 
             var service = new ContactListService();
-            ListItems = new ContactListViewModel(service.GetItems());
+            var ListItems = new ContactListViewModel(service.GetItems());
 
 
             //assert
-            ///assert that list of items has names we expect in order we expect
-            ///assert that the view has generated the list in order as expected
+            /*
+            -assert that list of items has names we expect in order we expect
+            -assert that the view has generated the list in order as expected
+            
+            ListItems.Should().HaveCount(3).And.OnlyHaveUniqueItems().And.ContainItemsAssignableTo<ContactItem>;
+            ListItems.Should().SatisfyRespectively(
+            first => {
+                first._name.Should().Be("Bill Grogs");
+                first._email.Should().Be("bill@billgrognard.com");
+                first._notes.Should().Be("Bill's website is billgrognard.com. Interesting articles about programming, roleplaying games, and why he hates traffic.");
+            },
+            second => {
+                second._name.Should().Be("Frank Stone");
+                second._email.Should().Be("frank@stonesthrow.com");
+                second._notes.Should().Be("Confused him for Frank Stallone.");
+            },
+            third => {
+                third._name.Should().Be("Bilbo Baggins");
+                third._email.Should().Be("bilbobaggins@helloshire.com");
+                third._notes.Should().Be("Gets a thousand yard stare whenever you mention any kind of ring - wedding, onion, Sonic, etc.");
+            });
+            */
         }
     }
 }
