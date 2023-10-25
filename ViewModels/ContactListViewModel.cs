@@ -6,11 +6,11 @@ namespace willardcrm.ViewModels
 {
     public class ContactListViewModel : ViewModelBase
     {
-        public ContactListViewModel(IEnumerable<ToDoItem> items)
+        public ContactListViewModel(IEnumerable<ContactItem> items)
         {
-            ListItems = new ObservableCollection<ToDoItem>(items);
+            ListItems = new ObservableCollection<ContactItem>(items);
         }
 
-        public ObservableCollection<ToDoItem> ListItems { get; }
+        public ObservableCollection<ContactItem> ListItems { get; }
     }
 }

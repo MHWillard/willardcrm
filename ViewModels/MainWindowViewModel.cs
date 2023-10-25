@@ -33,7 +33,7 @@ namespace willardcrm.ViewModels
 
             Observable.Merge(
                 addItemViewModel.OkCommand,
-                addItemViewModel.CancelCommand.Select(_ => (ToDoItem?)null))
+                addItemViewModel.CancelCommand.Select(_ => (ContactItem?)null))
                 .Take(1)
                 .Subscribe(newItem =>
                 { 

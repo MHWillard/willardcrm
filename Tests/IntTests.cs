@@ -1,6 +1,7 @@
 ﻿using FluentAssertions;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -95,18 +96,21 @@ namespace Tests
             //act
             ///get list of contact items from local folder
             ///push to ContactListService
-            List<ContactItem> contactList = contactHandler.GetAllContactItems();
+            ContactItem[] contactArray = contactHandler.GetAllContactItems();
 
             var service = new ContactListService();
-            var ListItems = new ContactListViewModel(service.GetItems());
+            var model = new ContactListViewModel(service.GetItems());
+            ObservableCollection<ContactItem> ListItems = model.ListItems;
 
 
             //assert
             /*
             -assert that list of items has names we expect in order we expect
             -assert that the view has generated the list in order as expected
-            
-            ListItems.Should().HaveCount(3).And.OnlyHaveUniqueItems().And.ContainItemsAssignableTo<ContactItem>;
+            */
+
+            ListItems.Should().HaveCount(3).And.OnlyHaveUniqueItems();
+            ListItems.Should().ContainItemsAssignableTo<ContactItem>();
             ListItems.Should().SatisfyRespectively(
             first => {
                 first._name.Should().Be("Bill Grogs");
@@ -123,7 +127,7 @@ namespace Tests
                 third._email.Should().Be("bilbobaggins@helloshire.com");
                 third._notes.Should().Be("Gets a thousand yard stare whenever you mention any kind of ring - wedding, onion, Sonic, etc.");
             });
-            */
+            
         }
     }
 }

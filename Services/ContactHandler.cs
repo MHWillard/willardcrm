@@ -41,9 +41,9 @@ namespace willardcrm.Services
             return contactItem;
         }
 
-        public List<ContactItem> GetAllContactItems() {
-            List<ContactItem> contactList = new List<ContactItem>();
-            return contactList;
+        public ContactItem[] GetAllContactItems() {
+            ContactItem[] contactArray = new ContactItem[3];
+            return contactArray;
         }
 
         public void saveContact(ContactItem contact)
