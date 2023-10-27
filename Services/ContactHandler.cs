@@ -15,9 +15,11 @@ namespace willardcrm.Services
     public class ContactHandler
     {
         public string GetContactPath() {
-            string baseDirectory = Directory.GetParent(AppDomain.CurrentDomain.BaseDirectory).Parent.Parent.Parent.Parent.FullName;
+            string baseDirectory = AppDomain.CurrentDomain.BaseDirectory;
+            //string baseDirectory = Directory.GetParent(AppDomain.CurrentDomain.BaseDirectory).Parent.Parent.Parent.Parent.FullName;
             string contactPath = Path.Combine(baseDirectory, "Contacts");
             return contactPath;
+            //manage this with a configuration setting for what's running, debug or build
         }
         public string GetContactJSON(string contactName)
         {
@@ -34,16 +36,36 @@ namespace willardcrm.Services
             return output;
         }
 
-        public ContactItem GetContactItem(string contactName)
+        public ContactItem GetContactItemByName(string contactName)
         {
             string output = this.GetContactJSON(contactName);
             ContactItem contactItem = JsonConvert.DeserializeObject<ContactItem>(output);
             return contactItem;
         }
 
-        public ContactItem[] GetAllContactItems() {
-            ContactItem[] contactArray = new ContactItem[3];
-            return contactArray;
+        public ContactItem GetContactItemByFile(string file)
+        {
+            string output = File.ReadAllText(file);
+            ContactItem contactItem = JsonConvert.DeserializeObject<ContactItem>(output);
+            return contactItem;
+        }
+
+        public IEnumerable<ContactItem> GetAllContactItems() {
+            //read contacts folder: get each item and load into it
+            //return empty list anyway initialized to 0
+            string contactPath = this.GetContactPath();
+            //arm empty DS
+            //for each file: load into DS
+            //otherwise, return empty DS or put an empty item in it?
+            string[] contactFiles = Directory.GetFiles(contactPath);
+            List<ContactItem> contactItems = new List<ContactItem>();
+
+            foreach (string file in contactFiles)
+            {
+                ContactItem contactItem = this.GetContactItemByFile(file);
+                contactItems.Add(contactItem);
+            }
+            return contactItems;
         }
 
         public void saveContact(ContactItem contact)

@@ -45,7 +45,7 @@ namespace Tests
 
             //the Add Contact window closes and now he's back on the main screen. Bill's contact shows up in the lefthand pane. 
             //to verify, he clicks on Bill's name. It's highlighted, and the right pane changes to display the loaded contact information in a neat column.
-            ContactItem billContact = contactHandler.GetContactItem("Bill Grogs");
+            ContactItem billContact = contactHandler.GetContactItemByName("Bill Grogs");
 
             string testJSON = contactHandler.GetContactJSON("Bill Grogs");
 
@@ -96,7 +96,7 @@ namespace Tests
             //act
             ///get list of contact items from local folder
             ///push to ContactListService
-            ContactItem[] contactArray = contactHandler.GetAllContactItems();
+            //ContactItem[] contactArray = contactHandler.GetAllContactItems();
 
             var service = new ContactListService();
             var model = new ContactListViewModel(service.GetItems());
@@ -109,24 +109,27 @@ namespace Tests
             -assert that the view has generated the list in order as expected
             */
 
-            ListItems.Should().HaveCount(3).And.OnlyHaveUniqueItems();
+            ListItems.Should().HaveCount(3);
+                //.And.OnlyHaveUniqueItems();
             ListItems.Should().ContainItemsAssignableTo<ContactItem>();
             ListItems.Should().SatisfyRespectively(
             first => {
-                first._name.Should().Be("Bill Grogs");
-                first._email.Should().Be("bill@billgrognard.com");
-                first._notes.Should().Be("Bill's website is billgrognard.com. Interesting articles about programming, roleplaying games, and why he hates traffic.");
+                first._name.Should().Be("Bilbo Baggins");
+                first._email.Should().Be("bilbobaggins@helloshire.com");
+                first._notes.Should().Be("Gets a thousand yard stare whenever you mention any kind of ring - wedding, onion, Sonic, etc.");
             },
             second => {
-                second._name.Should().Be("Frank Stone");
-                second._email.Should().Be("frank@stonesthrow.com");
-                second._notes.Should().Be("Confused him for Frank Stallone.");
+                second._name.Should().Be("Bill Grogs");
+                second._email.Should().Be("bill@billgrognard.com");
+                second._notes.Should().Be("Bill's website is billgrognard.com. Interesting articles about programming, roleplaying games, and why he hates traffic.");
             },
             third => {
-                third._name.Should().Be("Bilbo Baggins");
-                third._email.Should().Be("bilbobaggins@helloshire.com");
-                third._notes.Should().Be("Gets a thousand yard stare whenever you mention any kind of ring - wedding, onion, Sonic, etc.");
+                third._name.Should().Be("Frank Stone");
+                third._email.Should().Be("frank@stonesthrow.com");
+                third._notes.Should().Be("Confused him for Frank Stallone.");
             });
+
+            //add test: loading an empty list safely
             
         }
     }

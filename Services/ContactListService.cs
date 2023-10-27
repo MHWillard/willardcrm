@@ -1,14 +1,19 @@
-﻿using System.Collections.Generic;
+﻿using Microsoft.CodeAnalysis.CSharp.Syntax;
+using System.Collections.Generic;
 using willardcrm.DataModel;
 
 namespace willardcrm.Services
 {
     public class ContactListService
     {
-        public IEnumerable<ContactItem> GetItems() => new[]
+        private ContactHandler contactHandler = new ContactHandler(); //later inject this dependency
+
+        public IEnumerable<ContactItem> GetItems() 
         {
             //gets data from ContactHandler to load
-            new ContactItem { }, new ContactItem { }, new ContactItem { },
-        };
+            //new ContactItem { }, new ContactItem { }, new ContactItem { },
+            IEnumerable<ContactItem> ListItems = contactHandler.GetAllContactItems();
+            return ListItems;
+        }
     }
 }
