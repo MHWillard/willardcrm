@@ -9,6 +9,7 @@ using System.IO;
 using System.Reflection;
 using willardcrm.DataModel;
 using FluentAssertions.Formatting;
+using System.Configuration;
 
 namespace willardcrm.Services
 {
@@ -17,7 +18,11 @@ namespace willardcrm.Services
         public string GetContactPath() {
             string baseDirectory = AppDomain.CurrentDomain.BaseDirectory;
             //string baseDirectory = Directory.GetParent(AppDomain.CurrentDomain.BaseDirectory).Parent.Parent.Parent.Parent.FullName;
+            //string contactPath = Path.Combine(baseDirectory, "Contacts");
+            //string appMainDirectory = AppContext.BaseDirectory;
+            string contactsFolderPath = ConfigurationManager.AppSettings["ContactsFolderPath"];
             string contactPath = Path.Combine(baseDirectory, "Contacts");
+
             return contactPath;
             //manage this with a configuration setting for what's running, debug or build
         }
