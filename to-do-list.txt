@@ -3,7 +3,6 @@ WILLARDCRM (DESKTOP CONTACT MANAGER) TO-DO LIST
 THE MVP:
 - List contacts on left side panel.
 - Have contact details appear on right-side panel (they appear when you click on a contact name).
-- Buttons to add and delete contacts.
 - Contact details: name, relationship, interests, notes
 
 LATER FEATURES:
@@ -17,10 +16,13 @@ NOTES
 - We want to make sure we're clearing out the contacts folder and not pushing it to the repo.
 
 **********
+MVP STEPS
 X Contacts get written as JSON files to local app directory.
 X App can read local JSON files in the app directory and convert them to contactItems or grab their values.
-- The left pane lists every contact in the local directory.
+- The left pane lists every contact in the local directory. If you manually create the correct JSON in the folder, it will show up on the left.
 - The right pane lists the details of the contact, pulled from the JSON.
 - Selecting a contact on the left pane loads the details on the right.
+
+OTHER FEATURES
 - Clicking the Add button lets you fill out a form for contact information and it saves the contact as a JSON in the contacts folder.
 - Selecting a contact and clicking Delete deletes the contact and the local JSON.

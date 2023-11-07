@@ -1,11 +1,21 @@
 using FluentAssertions;
+using System.Drawing.Printing;
 using willardcrm.DataModel;
 using willardcrm.Services;
+using Xunit.Abstractions;
 
 namespace Tests
 {
+
     public class TestFiles
     {
+        private readonly ITestOutputHelper output;
+
+        public TestFiles(ITestOutputHelper output)
+        {
+            this.output = output;
+        }
+
         [Fact]
         public void Test_ConvertContactToJSON()
         {
@@ -27,6 +37,16 @@ namespace Tests
             //assert
             output.Should().Be("{\"_name\":\"Bill Grogs\",\"_relationship\":\"Friend\",\"_interests\":\"roleplaying games, history\",\"_email\":\"bill@billgrognard.com\",\"_phone\":\"555.782.9843\",\"_notes\":\"Bill's website is billgrognard.com. Interesting articles about programming, roleplaying games, and why he hates traffic.\"}");
 
+        }
+
+        [Fact]
+        public void Test_ContactPath()
+        {
+            //string baseDirectory = AppDomain.CurrentDomain.BaseDirectory;
+            string baseDirectory = Directory.GetCurrentDirectory();
+            output.WriteLine("baseDirectory: " + baseDirectory);
+            string contactPath = Path.Combine(baseDirectory, "Contacts");
+            output.WriteLine("contactPath: " + contactPath);
         }
     }
 }
