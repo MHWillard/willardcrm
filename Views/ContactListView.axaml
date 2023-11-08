@@ -24,6 +24,12 @@
 				</Button>
 				<ItemsControl ItemsSource="{Binding ListItems}">
 					<ItemsControl.ItemTemplate>
+						<DataTemplate>
+							<StackPanel Margin="4">
+								<ListBox SelectionMode="Single"
+										 x:Name="ListItems"/>
+							</StackPanel>
+						</DataTemplate>
 					</ItemsControl.ItemTemplate>
 				</ItemsControl>
 			</DockPanel>
