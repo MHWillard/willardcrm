@@ -22,16 +22,15 @@
 								Command="{Binding $parent[Window].DataContext.AddItem}">
 					Add Item
 				</Button>
-				<ItemsControl ItemsSource="{Binding ListItems}">
-					<ItemsControl.ItemTemplate>
+				<ListBox SelectionMode="Single" ItemsSource="{Binding ListItems}">
+					<ListBox.ItemTemplate>
 						<DataTemplate>
 							<StackPanel Margin="4">
-								<ListBox SelectionMode="Single"
-										 x:Name="ListItems"/>
+								<TextBlock Text="{Binding _name}" />
 							</StackPanel>
 						</DataTemplate>
-					</ItemsControl.ItemTemplate>
-				</ItemsControl>
+					</ListBox.ItemTemplate>
+				</ListBox>
 			</DockPanel>
 				<TextBlock Grid.Row="0" Grid.Column="1">Contact pane</TextBlock>
 		</Grid>
