@@ -22,7 +22,7 @@
 								Command="{Binding $parent[Window].DataContext.AddItem}">
 					Add Item
 				</Button>
-				<ListBox SelectionMode="Single" ItemsSource="{Binding ListItems}">
+				<ListBox SelectionMode="Single" ItemsSource="{Binding ListItems}" SelectedItem="{Binding SelectedItem}">
 					<ListBox.ItemTemplate>
 						<DataTemplate>
 							<StackPanel Margin="4">
@@ -32,7 +32,11 @@
 					</ListBox.ItemTemplate>
 				</ListBox>
 			</DockPanel>
-				<TextBlock Grid.Row="0" Grid.Column="1">Contact pane</TextBlock>
+			<DockPanel Grid.Row="0" Grid.Column="1">
+				<TextBlock Grid.Row="0" Grid.Column="1">
+					Contact
+				</TextBlock>
+			</DockPanel>
 		</Grid>
 	</DockPanel>
 </UserControl>
