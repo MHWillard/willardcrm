@@ -33,9 +33,12 @@
 				</ListBox>
 			</DockPanel>
 			<DockPanel Grid.Row="0" Grid.Column="1">
-				<TextBlock Grid.Row="0" Grid.Column="1">
-					Contact
-				</TextBlock>
+				<TextBlock Text="{Binding SelectedItem._name}" />
+				<TextBlock Text="{Binding SelectedItem._relationship}" />
+				<TextBlock Text="{Binding SelectedItem._email}" />
+				<TextBlock Text="{Binding SelectedItem._phone}" />
+				<TextBlock Text="{Binding SelectedItem._interests}" />
+				<TextBlock Text="{Binding SelectedItem._notes}" />
 			</DockPanel>
 		</Grid>
 	</DockPanel>
