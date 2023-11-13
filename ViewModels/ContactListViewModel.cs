@@ -10,6 +10,11 @@ namespace willardcrm.ViewModels
         ContactItem selectedItem;
         ContactDetailsViewModel detailsViewModel;
 
+        public ContactListViewModel()
+        {
+            this.detailsViewModel = new ContactDetailsViewModel();
+        }
+
         public ContactListViewModel(IEnumerable<ContactItem> items)
         {
             ListItems = new ObservableCollection<ContactItem>(items);

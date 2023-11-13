@@ -18,5 +18,13 @@
 		<TextBox AcceptsReturn="True"
 				 Text="{Binding Name}"
 				 Watermark="Enter your contact"/>
+		<StackPanel>
+			<TextBox Text="{Binding _name}" />
+			<TextBox Text="{Binding _relationship}" />
+			<TextBox Text="{Binding _email}" />
+			<TextBox Text="{Binding _phone}" />
+			<TextBox Text="{Binding _interests}" />
+			<TextBox AcceptsReturn="True" Text="{Binding _notes}" TextWrapping="Wrap" />
+		</StackPanel>
 	</DockPanel>
 </UserControl>

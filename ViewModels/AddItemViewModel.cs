@@ -8,6 +8,11 @@ namespace willardcrm.ViewModels
     public class AddItemViewModel : ViewModelBase
     {
         private string _name = string.Empty;
+        private string _relationship = string.Empty;
+        private string _email = string.Empty;
+        private string _phone = string.Empty;
+        private string _interests = string.Empty;
+        private string _notes = string.Empty;
 
         public ReactiveCommand<Unit, ContactItem> OkCommand { get; }
         public ReactiveCommand<Unit, Unit> CancelCommand { get; }
