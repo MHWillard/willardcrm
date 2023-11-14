@@ -15,16 +15,13 @@
 				HorizontalAlignment="Stretch"
 				HorizontalContentAlignment="Center"
 				Command="{Binding OkCommand}">OK</Button>
-		<TextBox AcceptsReturn="True"
-				 Text="{Binding Name}"
-				 Watermark="Enter your contact"/>
-		<StackPanel>
-			<TextBox Text="{Binding _name}" />
-			<TextBox Text="{Binding _relationship}" />
-			<TextBox Text="{Binding _email}" />
-			<TextBox Text="{Binding _phone}" />
-			<TextBox Text="{Binding _interests}" />
-			<TextBox AcceptsReturn="True" Text="{Binding _notes}" TextWrapping="Wrap" />
+		<StackPanel Spacing="15">
+			<TextBox Text="{Binding Name}" Watermark="Name" />
+			<TextBox Text="{Binding Relationship}" Watermark="Relationship" />
+			<TextBox Text="{Binding Email}" Watermark="Email" />
+			<TextBox Text="{Binding Phone}" Watermark="Phone" />
+			<TextBox Text="{Binding Interests}" Watermark="Interests" />
+			<TextBox AcceptsReturn="True" Text="{Binding Notes}" TextWrapping="Wrap"  Watermark="Notes" />
 		</StackPanel>
 	</DockPanel>
 </UserControl>

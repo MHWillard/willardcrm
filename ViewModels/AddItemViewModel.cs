@@ -21,7 +21,7 @@ namespace willardcrm.ViewModels
         {
             var isValidObservable = this.WhenAnyValue(x => x._name, x => !string.IsNullOrWhiteSpace(x));
 
-            OkCommand = ReactiveCommand.Create(() => new ContactItem { _name = Name }, isValidObservable);
+            OkCommand = ReactiveCommand.Create(() => new ContactItem { _name = Name, _relationship = Relationship, _email = Email, _phone = Phone, _interests = Interests, _notes = Notes }, isValidObservable);
             CancelCommand = ReactiveCommand.Create(() => { });
         }
 
@@ -29,6 +29,36 @@ namespace willardcrm.ViewModels
         {
             get => _name;
             set => this.RaiseAndSetIfChanged(ref _name, value);
+        }
+
+        public string Relationship
+        {
+            get => _relationship;
+            set => this.RaiseAndSetIfChanged(ref _relationship, value);
+        }
+
+        public string Email
+        {
+            get => _email;
+            set => this.RaiseAndSetIfChanged(ref _email, value);
+        }
+
+        public string Phone
+        {
+            get => _phone;
+            set => this.RaiseAndSetIfChanged(ref _phone, value);
+        }
+
+        public string Interests
+        {
+            get => _interests;
+            set => this.RaiseAndSetIfChanged(ref _interests, value);
+        }
+
+        public string Notes
+        {
+            get => _notes;
+            set => this.RaiseAndSetIfChanged(ref _notes, value);
         }
     }
 }
