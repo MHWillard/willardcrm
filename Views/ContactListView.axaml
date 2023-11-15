@@ -26,7 +26,7 @@
 					<ListBox.ItemTemplate>
 						<DataTemplate>
 							<StackPanel Margin="4">
-								<TextBlock Text="{Binding _name}" />
+								<TextBlock Text="{Binding Name}" />
 							</StackPanel>
 						</DataTemplate>
 					</ListBox.ItemTemplate>
@@ -34,7 +34,7 @@
 			</DockPanel>
 			<DockPanel Grid.Row="0" Grid.Column="1">
 				<StackPanel>
-					<TextBlock Text="{Binding SelectedItem._name}" />
+					<TextBlock Text="{Binding SelectedItem.Name}" />
 					<TextBlock Text="{Binding SelectedItem._relationship}" />
 					<TextBlock Text="{Binding SelectedItem._email}" />
 					<TextBlock Text="{Binding SelectedItem._phone}" />

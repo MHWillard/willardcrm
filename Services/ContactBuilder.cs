@@ -11,7 +11,7 @@ namespace willardcrm.Services
     {
         public ContactItem BuildContact(Dictionary<string, string> contactProps) { 
             ContactItem contactItem = new ContactItem();
-            contactItem._name = contactProps["name"];
+            contactItem.Name = contactProps["name"];
             contactItem._relationship = contactProps["relationship"];
             contactItem._interests = contactProps["interests"];
             contactItem._email = contactProps["email"];

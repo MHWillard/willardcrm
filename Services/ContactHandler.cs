@@ -72,7 +72,7 @@ namespace willardcrm.Services
         {
             string output = JsonConvert.SerializeObject(contact);
             string contactPath = this.GetContactPath();
-            string JSONfilename = contact._name + ".json";
+            string JSONfilename = contact.Name + ".json";
             string fullPath = Path.Combine(contactPath, JSONfilename);
             File.WriteAllText(fullPath, output);
         }

@@ -21,7 +21,7 @@ namespace Tests
         {
             //arrange
             ContactItem testContact = new ContactItem();
-            testContact._name = "Bill Grogs";
+            testContact.Name = "Bill Grogs";
             testContact._relationship = "Friend";
             testContact._interests = "roleplaying games, history";
             testContact._email = "bill@billgrognard.com";

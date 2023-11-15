@@ -19,10 +19,11 @@ namespace willardcrm.ViewModels
 
         public AddItemViewModel()
         {
-            var isValidObservable = this.WhenAnyValue(x => x._name, x => !string.IsNullOrWhiteSpace(x));
+            var isValidObservable = this.WhenAnyValue(x => x.Name, x => !string.IsNullOrWhiteSpace(x));
 
-            OkCommand = ReactiveCommand.Create(() => new ContactItem { _name = Name, _relationship = Relationship, _email = Email, _phone = Phone, _interests = Interests, _notes = Notes }, isValidObservable);
+            OkCommand = ReactiveCommand.Create(() => new ContactItem {Name = Name}, isValidObservable);
             CancelCommand = ReactiveCommand.Create(() => { });
+            //{ _name = Name, _relationship = Relationship, _email = Email, _phone = Phone, _interests = Interests, _notes = Notes }
         }
 
         public string Name

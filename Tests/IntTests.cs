@@ -50,11 +50,11 @@ namespace Tests
             string testJSON = contactHandler.GetContactJSON("Bill Grogs");
 
             //assert
-            testJSON.Should().Be("{\"_name\":\"Bill Grogs\",\"_relationship\":\"Friend\",\"_interests\":\"roleplaying games, history\",\"_email\":\"bill@billgrognard.com\",\"_phone\":\"555.782.9843\",\"_notes\":\"Bill's website is billgrognard.com. Interesting articles about programming, roleplaying games, and why he hates traffic.\"}");
+            testJSON.Should().Be("{\"Name\":\"Bill Grogs\",\"_relationship\":\"Friend\",\"_interests\":\"roleplaying games, history\",\"_email\":\"bill@billgrognard.com\",\"_phone\":\"555.782.9843\",\"_notes\":\"Bill's website is billgrognard.com. Interesting articles about programming, roleplaying games, and why he hates traffic.\"}");
 
             //assert contact item isn't null and it has expected properties
             billContact.Should().NotBeNull();
-            billContact._name.Should().Be("Bill Grogs");
+            billContact.Name.Should().Be("Bill Grogs");
             billContact._interests.Should().Be("roleplaying games, history");
             billContact._notes.Should().Be("Bill's website is billgrognard.com. Interesting articles about programming, roleplaying games, and why he hates traffic.");
 
@@ -114,23 +114,63 @@ namespace Tests
             ListItems.Should().ContainItemsAssignableTo<ContactItem>();
             ListItems.Should().SatisfyRespectively(
             first => {
-                first._name.Should().Be("Bilbo Baggins");
+                first.Name.Should().Be("Bilbo Baggins");
                 first._email.Should().Be("bilbobaggins@helloshire.com");
                 first._notes.Should().Be("Gets a thousand yard stare whenever you mention any kind of ring - wedding, onion, Sonic, etc.");
             },
             second => {
-                second._name.Should().Be("Bill Grogs");
+                second.Name.Should().Be("Bill Grogs");
                 second._email.Should().Be("bill@billgrognard.com");
                 second._notes.Should().Be("Bill's website is billgrognard.com. Interesting articles about programming, roleplaying games, and why he hates traffic.");
             },
             third => {
-                third._name.Should().Be("Frank Stone");
+                third.Name.Should().Be("Frank Stone");
                 third._email.Should().Be("frank@stonesthrow.com");
                 third._notes.Should().Be("Confused him for Frank Stallone.");
             });
 
             //add test: loading an empty list safely
             
+        }
+
+        [Fact]
+        public void Test_AddNewContactAndPopulateList() {
+            //arrange
+            ContactHandler contactHandler = new ContactHandler();
+            ContactBuilder contactBuilder = new ContactBuilder();
+
+            string contactPath = contactHandler.GetContactPath();
+            string[] files = Directory.GetFiles(contactPath);
+            foreach (string file in files)
+            {
+                File.Delete(file);
+            }
+
+            ContactItem contactOne = contactBuilder.BuildContact(new Dictionary<string, string>() {
+                {"name", "Bill Grogs"},{"relationship", "Friend"},{"interests", "roleplaying games, history"},{"email", "bill@billgrognard.com"},{"phone", "555.782.9843"},{"notes", "Bill's website is billgrognard.com. Interesting articles about programming, roleplaying games, and why he hates traffic."}
+            });
+            ContactItem contactTwo = contactBuilder.BuildContact(new Dictionary<string, string>() {
+                {"name", "Frank Stone"},{"relationship", "Friend"},{"interests", "roleplaying games, history"},{"email", "frank@stonesthrow.com"},{"phone", "555.782.9843"},{"notes", "Confused him for Frank Stallone."}
+            });
+            ContactItem contactThree = contactBuilder.BuildContact(new Dictionary<string, string>() {
+                {"name", "Bilbo Baggins"},{"relationship", "Friend"},{"interests", "roleplaying games, history"},{"email", "bilbobaggins@helloshire.com"},{"phone", "555.782.9843"},{"notes", "Gets a thousand yard stare whenever you mention any kind of ring - wedding, onion, Sonic, etc."}
+            });
+
+            ContactItem[] array = new ContactItem[3]; array[0] = contactOne; array[1] = contactTwo; array[2] = contactThree;
+            foreach (ContactItem item in array)
+            {
+                contactHandler.saveContact(item);
+            }
+
+            MainWindowViewModel mainWindow = new MainWindowViewModel();
+
+            //act
+
+            //assert
+            //assert that the ContactItem created has the expected values
+            //assert that the CI file is present in the contacts folder
+            //assert that the CI object was loaded properly into the ListItems
+
         }
     }
 }
