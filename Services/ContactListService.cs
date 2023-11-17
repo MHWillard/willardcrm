@@ -8,6 +8,11 @@ namespace willardcrm.Services
     {
         private ContactHandler contactHandler = new ContactHandler(); //later inject this dependency
 
+        public void SaveItem(ContactItem contactItem)
+        {
+            contactHandler.saveContact(contactItem);
+        }
+
         public IEnumerable<ContactItem> GetItems() 
         {
             //gets data from ContactHandler to load
