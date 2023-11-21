@@ -55,8 +55,8 @@ namespace Tests
             //assert contact item isn't null and it has expected properties
             billContact.Should().NotBeNull();
             billContact.Name.Should().Be("Bill Grogs");
-            billContact._interests.Should().Be("roleplaying games, history");
-            billContact._notes.Should().Be("Bill's website is billgrognard.com. Interesting articles about programming, roleplaying games, and why he hates traffic.");
+            billContact.Interests.Should().Be("roleplaying games, history");
+            billContact.Notes.Should().Be("Bill's website is billgrognard.com. Interesting articles about programming, roleplaying games, and why he hates traffic.");
 
         }
 
@@ -115,18 +115,18 @@ namespace Tests
             ListItems.Should().SatisfyRespectively(
             first => {
                 first.Name.Should().Be("Bilbo Baggins");
-                first._email.Should().Be("bilbobaggins@helloshire.com");
-                first._notes.Should().Be("Gets a thousand yard stare whenever you mention any kind of ring - wedding, onion, Sonic, etc.");
+                first.Email.Should().Be("bilbobaggins@helloshire.com");
+                first.Notes.Should().Be("Gets a thousand yard stare whenever you mention any kind of ring - wedding, onion, Sonic, etc.");
             },
             second => {
                 second.Name.Should().Be("Bill Grogs");
-                second._email.Should().Be("bill@billgrognard.com");
-                second._notes.Should().Be("Bill's website is billgrognard.com. Interesting articles about programming, roleplaying games, and why he hates traffic.");
+                second.Email.Should().Be("bill@billgrognard.com");
+                second.Notes.Should().Be("Bill's website is billgrognard.com. Interesting articles about programming, roleplaying games, and why he hates traffic.");
             },
             third => {
                 third.Name.Should().Be("Frank Stone");
-                third._email.Should().Be("frank@stonesthrow.com");
-                third._notes.Should().Be("Confused him for Frank Stallone.");
+                third.Email.Should().Be("frank@stonesthrow.com");
+                third.Notes.Should().Be("Confused him for Frank Stallone.");
             });
 
             //add test: loading an empty list safely

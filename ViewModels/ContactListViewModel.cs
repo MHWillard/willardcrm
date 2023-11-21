@@ -20,7 +20,7 @@ namespace willardcrm.ViewModels
             ListItems = new ObservableCollection<ContactItem>(items);
         }
 
-        public ObservableCollection<ContactItem> ListItems { get; }
+        public ObservableCollection<ContactItem> ListItems { get; set; }
 
         public ContactItem SelectedItem
         {

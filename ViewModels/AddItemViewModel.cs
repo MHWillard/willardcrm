@@ -21,7 +21,7 @@ namespace willardcrm.ViewModels
         {
             var isValidObservable = this.WhenAnyValue(x => x.Name, x => !string.IsNullOrWhiteSpace(x));
 
-            OkCommand = ReactiveCommand.Create(() => new ContactItem {Name = Name}, isValidObservable);
+            OkCommand = ReactiveCommand.Create(() => new ContactItem {Name = Name, Relationship = Relationship, Email = Email, Phone = Phone, Interests = Interests, Notes = Notes }, isValidObservable);
             CancelCommand = ReactiveCommand.Create(() => { });
             //{ _name = Name, _relationship = Relationship, _email = Email, _phone = Phone, _interests = Interests, _notes = Notes }
         }

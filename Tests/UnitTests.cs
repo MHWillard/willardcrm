@@ -22,11 +22,11 @@ namespace Tests
             //arrange
             ContactItem testContact = new ContactItem();
             testContact.Name = "Bill Grogs";
-            testContact._relationship = "Friend";
-            testContact._interests = "roleplaying games, history";
-            testContact._email = "bill@billgrognard.com";
-            testContact._phone = "555.782.9843";
-            testContact._notes = "Bill's website is billgrognard.com. Interesting articles about programming, roleplaying games, and why he hates traffic.";
+            testContact.Relationship = "Friend";
+            testContact.Interests = "roleplaying games, history";
+            testContact.Email = "bill@billgrognard.com";
+            testContact.Phone = "555.782.9843";
+            testContact.Notes = "Bill's website is billgrognard.com. Interesting articles about programming, roleplaying games, and why he hates traffic.";
 
             ContactHandler contactHandler = new ContactHandler();
 

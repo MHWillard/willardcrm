@@ -9,6 +9,7 @@ using System.IO;
 using System.Reflection;
 using willardcrm.DataModel;
 using FluentAssertions.Formatting;
+using System.Collections.ObjectModel;
 
 namespace willardcrm.Services
 {
@@ -50,7 +51,7 @@ namespace willardcrm.Services
             return contactItem;
         }
 
-        public IEnumerable<ContactItem> GetAllContactItems() {
+        public ObservableCollection<ContactItem> GetAllContactItems() {
             //read contacts folder: get each item and load into it
             //return empty list anyway initialized to 0
             string contactPath = this.GetContactPath();
@@ -58,7 +59,7 @@ namespace willardcrm.Services
             //for each file: load into DS
             //otherwise, return empty DS or put an empty item in it?
             string[] contactFiles = Directory.GetFiles(contactPath);
-            List<ContactItem> contactItems = new List<ContactItem>();
+            ObservableCollection<ContactItem> contactItems = new ObservableCollection<ContactItem>();
 
             foreach (string file in contactFiles)
             {

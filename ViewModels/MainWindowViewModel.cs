@@ -43,11 +43,11 @@ namespace willardcrm.ViewModels
                     {
                         //ContactList.ListItems.Add(newItem);
                         _service.SaveItem(newItem);
-                        _ContactList = _service.GetItems();
-                        //ContactList.
+                        var updatedList = _service.GetItems();
+                        _ContactList.ListItems = updatedList;
 
                     }
-                    ContentViewModel = ContactList;
+                    ContentViewModel = _ContactList;
                 });
 
             ContentViewModel = addItemViewModel;

@@ -3,18 +3,18 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:vm="using:willardcrm.ViewModels"
-             mc:Ignorable="d" d:DesignWidth="650" d:DesignHeight="450"
+             mc:Ignorable="d" d:DesignWidth="550" d:DesignHeight="450"
              x:Class="willardcrm.Views.ContactListView"
              x:DataType="vm:ContactListViewModel">
 	<DockPanel>
 		<Grid Background="Gainsboro"
       HorizontalAlignment="Left"
       VerticalAlignment="Top"
-      Width="650"
+      Width="600"
       Height="450"
       ColumnDefinitions="*,*"
       RowDefinitions="*">
-			<DockPanel Background="LightBlue" Grid.Row="0" Grid.Column="0">
+			<DockPanel Background="LightBlue" Grid.Row="0" Grid.Column="0" Width="200" Height="450">
 				<Button DockPanel.Dock="Bottom"
 								HorizontalAlignment="Stretch"
 								HorizontalContentAlignment="Center"
@@ -35,11 +35,11 @@
 			<DockPanel Grid.Row="0" Grid.Column="1">
 				<StackPanel>
 					<TextBlock Text="{Binding SelectedItem.Name}" />
-					<TextBlock Text="{Binding SelectedItem._relationship}" />
-					<TextBlock Text="{Binding SelectedItem._email}" />
-					<TextBlock Text="{Binding SelectedItem._phone}" />
-					<TextBlock Text="{Binding SelectedItem._interests}" />
-					<TextBlock Text="{Binding SelectedItem._notes}" TextWrapping="Wrap" />
+					<TextBlock Text="{Binding SelectedItem.Relationship}" />
+					<TextBlock Text="{Binding SelectedItem.Email}" />
+					<TextBlock Text="{Binding SelectedItem.Phone}" />
+					<TextBlock Text="{Binding SelectedItem.Interests}" />
+					<TextBlock Text="{Binding SelectedItem.Notes}" TextWrapping="Wrap" />
 				</StackPanel>
 			</DockPanel>
 		</Grid>
