@@ -23,5 +23,10 @@ namespace willardcrm.DataModel
             return "{\"name\": \"Joe Schmo\",\"relationship\": \"friend\",\"interests\": \"football, hockey\",\"updates:\" [{\"id\": 1,\"date\": \"10-09-2023\",\"comment\": \"met Joe\"},{\"id\": 2,\"date\": \"10-10-2023\",\"comment\": \"helped Joe move\"},]}";
         }
 
+        public string GetName()
+        {
+            return "Name\n" + this.Name + "\n\n";
+        }
+
     }
 }
