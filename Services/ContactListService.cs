@@ -1,5 +1,6 @@
 ﻿using Microsoft.CodeAnalysis.CSharp.Syntax;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using willardcrm.DataModel;
 
 namespace willardcrm.Services
@@ -8,11 +9,16 @@ namespace willardcrm.Services
     {
         private ContactHandler contactHandler = new ContactHandler(); //later inject this dependency
 
-        public IEnumerable<ContactItem> GetItems() 
+        public void SaveItem(ContactItem contactItem)
+        {
+            contactHandler.saveContact(contactItem);
+        }
+
+        public ObservableCollection<ContactItem> GetItems() 
         {
             //gets data from ContactHandler to load
-            //new ContactItem { }, new ContactItem { }, new ContactItem { },
-            IEnumerable<ContactItem> ListItems = contactHandler.GetAllContactItems();
+            //IEnumerable<ContactItem>
+            ObservableCollection<ContactItem> ListItems = contactHandler.GetAllContactItems();
             return ListItems;
         }
     }

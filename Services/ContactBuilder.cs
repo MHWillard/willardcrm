@@ -11,12 +11,12 @@ namespace willardcrm.Services
     {
         public ContactItem BuildContact(Dictionary<string, string> contactProps) { 
             ContactItem contactItem = new ContactItem();
-            contactItem._name = contactProps["name"];
-            contactItem._relationship = contactProps["relationship"];
-            contactItem._interests = contactProps["interests"];
-            contactItem._email = contactProps["email"];
-            contactItem._phone = contactProps["phone"];
-            contactItem._notes = contactProps["notes"];
+            contactItem.Name = contactProps["name"];
+            contactItem.Relationship = contactProps["relationship"];
+            contactItem.Interests = contactProps["interests"];
+            contactItem.Email = contactProps["email"];
+            contactItem.Phone = contactProps["phone"];
+            contactItem.Notes = contactProps["notes"];
 
             //                {"name", "Bill Grogs"},{"relationship", "Friend"},{"interests", "roleplaying games, history"},{"email", "bill@billgrognard.com"},{"phone", "555.782.9843"},{"notes", "Bill's website is billgrognard.com. Interesting articles about programming, roleplaying games, and why he hates traffic."}
 
