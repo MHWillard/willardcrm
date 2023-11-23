@@ -1,4 +1,4 @@
-﻿using Newtonsoft.Json;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,11 +9,7 @@ using System.IO;
 using System.Reflection;
 using willardcrm.DataModel;
 using FluentAssertions.Formatting;
-<<<<<<< HEAD
-using System.Configuration;
-=======
 using System.Collections.ObjectModel;
->>>>>>> c801cf23f8c740b923906a67ffe4b80c1e939ab7
 
 namespace willardcrm.Services
 {
