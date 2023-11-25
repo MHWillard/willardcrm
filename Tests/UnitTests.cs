@@ -1,7 +1,9 @@
 using FluentAssertions;
+using ReactiveUI;
 using System.Drawing.Printing;
 using willardcrm.DataModel;
 using willardcrm.Services;
+using willardcrm.ViewModels;
 using Xunit.Abstractions;
 
 namespace Tests
@@ -48,5 +50,40 @@ namespace Tests
             string contactPath = Path.Combine(baseDirectory, "Contacts");
             output.WriteLine("contactPath: " + contactPath);
         }
+    }
+
+    public class TestUI
+    {
+        private readonly ITestOutputHelper output;
+
+        public TestUI(ITestOutputHelper output)
+        {
+            this.output = output;
+        }
+
+        [Fact]
+        public void Test_DeleteItemButton()
+        {
+            //arrange
+            MainWindowViewModel main = new MainWindowViewModel();
+            ContactHandler handler = new ContactHandler();
+
+            //act
+            ContactItem testContact = new ContactItem();
+            testContact.Name = "Bill Grogs";
+            testContact.Relationship = "Friend";
+            testContact.Interests = "roleplaying games, history";
+            testContact.Email = "bill@billgrognard.com";
+            testContact.Phone = "555.782.9843";
+            testContact.Notes = "Bill's website is billgrognard.com. Interesting articles about programming, roleplaying games, and why he hates traffic.";
+
+            handler.saveContact(testContact);
+            main.DeleteItem(testContact);
+
+            //assert
+            Assert.False(handler.CheckIfContactExists("Bill Grogs"));
+
+        }
+
     }
 }

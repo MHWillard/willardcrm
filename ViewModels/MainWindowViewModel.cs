@@ -52,5 +52,13 @@ namespace willardcrm.ViewModels
 
             ContentViewModel = addItemViewModel;
         }
+
+        public void DeleteItem(ContactItem contact) 
+        {
+            //take in selectedItem
+            //use _service: find and destroy it
+            //re-render list
+            _service.DeleteItem(contact);
+        }
     }
 }

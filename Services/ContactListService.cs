@@ -21,5 +21,10 @@ namespace willardcrm.Services
             ObservableCollection<ContactItem> ListItems = contactHandler.GetAllContactItems();
             return ListItems;
         }
+
+        public void DeleteItem(ContactItem contact)
+        {
+            contactHandler.deleteContact(contact);
+        }
     }
 }
