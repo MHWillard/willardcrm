@@ -1,5 +1,6 @@
 ﻿using ReactiveUI;
 using System;
+using System.Diagnostics;
 using System.Reactive.Linq;
 using willardcrm.DataModel;
 using willardcrm.Services;
@@ -59,6 +60,16 @@ namespace willardcrm.ViewModels
             //use _service: find and destroy it
             //re-render list
             _service.DeleteItem(contact);
+        }
+
+        public void DeleteItemFake()
+        {
+            Debug.WriteLine("delete");
+        }
+
+        public void TestEvent()
+        {
+
         }
     }
 }

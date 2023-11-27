@@ -19,7 +19,14 @@
 								HorizontalAlignment="Stretch"
 								HorizontalContentAlignment="Center"
 								x:CompileBindings="False"
-								Command="{Binding $parent[Window].DataContext.AddItem}">
+								Command="{Binding $parent[Window].DataContext.TestEvent}">
+					Test
+				</Button>
+				<Button DockPanel.Dock="Bottom"
+								HorizontalAlignment="Stretch"
+								HorizontalContentAlignment="Center"
+								x:CompileBindings="False"
+								Command="{Binding $parent[Window].DataContext.DeleteItemFake}">
 					Delete
 				</Button>
 				<Button DockPanel.Dock="Bottom"
