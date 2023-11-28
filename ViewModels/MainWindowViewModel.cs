@@ -1,7 +1,10 @@
 ﻿using ReactiveUI;
 using System;
 using System.Diagnostics;
+using System.Numerics;
+using System.Reactive;
 using System.Reactive.Linq;
+using System.Xml.Linq;
 using willardcrm.DataModel;
 using willardcrm.Services;
 
@@ -15,13 +18,15 @@ namespace willardcrm.ViewModels
 
         //this has a dependency on the ToDoListService
 
+        public ReactiveCommand<ContactItem, Unit> DeleteCommand { get; }
+
         public MainWindowViewModel()
         {
             _service = new ContactListService();
             _ContactList = new ContactListViewModel(_service.GetItems());
             _contentViewModel = _ContactList;
+            DeleteCommand = ReactiveCommand.Create<ContactItem>(DeleteItem);
         }
-
         public ContactListViewModel ContactList { get; }
 
         public ViewModelBase ContentViewModel
@@ -56,20 +61,15 @@ namespace willardcrm.ViewModels
 
         public void DeleteItem(ContactItem contact) 
         {
+            if (contact != null) {
+                _service.DeleteItem(contact);
+                var updatedList = _service.GetItems();
+                _ContactList.ListItems = updatedList;
+            }
+            ContentViewModel = _ContactList;
             //take in selectedItem
             //use _service: find and destroy it
             //re-render list
-            _service.DeleteItem(contact);
-        }
-
-        public void DeleteItemFake()
-        {
-            Debug.WriteLine("delete");
-        }
-
-        public void TestEvent()
-        {
-
         }
     }
 }
