@@ -47,10 +47,8 @@ namespace willardcrm.ViewModels
                 { 
                     if (newItem != null)
                     {
-                        //ContactList.ListItems.Add(newItem);
                         _service.SaveItem(newItem);
-                        var updatedList = _service.GetItems();
-                        _ContactList.ListItems = updatedList;
+                        _ContactList.ListItems.Add(newItem);
 
                     }
                     ContentViewModel = _ContactList;
@@ -63,13 +61,9 @@ namespace willardcrm.ViewModels
         {
             if (contact != null) {
                 _service.DeleteItem(contact);
-                var updatedList = _service.GetItems();
-                _ContactList.ListItems = updatedList;
+                _ContactList.ListItems.Remove(contact);
             }
             ContentViewModel = _ContactList;
-            //take in selectedItem
-            //use _service: find and destroy it
-            //re-render list
         }
     }
 }

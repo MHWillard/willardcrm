@@ -18,15 +18,5 @@ namespace willardcrm.DataModel
         //public List<ContactUpdate> _updates { get; set; } = new List<ContactUpdate>(); //this has to be a list
         //some properties should default to empty, but a Name is required
 
-        public string GetJSON()
-        {
-            return "{\"name\": \"Joe Schmo\",\"relationship\": \"friend\",\"interests\": \"football, hockey\",\"updates:\" [{\"id\": 1,\"date\": \"10-09-2023\",\"comment\": \"met Joe\"},{\"id\": 2,\"date\": \"10-10-2023\",\"comment\": \"helped Joe move\"},]}";
-        }
-
-        public string GetName()
-        {
-            return "Name\n" + this.Name + "\n\n";
-        }
-
     }
 }

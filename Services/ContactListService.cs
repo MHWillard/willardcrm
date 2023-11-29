@@ -16,8 +16,6 @@ namespace willardcrm.Services
 
         public ObservableCollection<ContactItem> GetItems() 
         {
-            //gets data from ContactHandler to load
-            //IEnumerable<ContactItem>
             ObservableCollection<ContactItem> ListItems = contactHandler.GetAllContactItems();
             return ListItems;
         }

@@ -25,4 +25,9 @@ X Selecting a contact on the left pane loads the details on the right.
 
 OTHER FEATURES
 X Clicking the Add button lets you fill out a form for contact information and it saves the contact as a JSON in the contacts folder.
-- Selecting a contact and clicking Delete deletes the contact and the local JSON. The delete button is on the bottom dock of the contact details.
+X Selecting a contact and clicking Delete deletes the contact and the local JSON. The delete button is on the bottom dock of the contact details.
+
+DESIRED FEATURES
+- ability to select and edit a contact
+- ability to add notes
+- contact reminders
