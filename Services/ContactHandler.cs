@@ -66,6 +66,7 @@ namespace willardcrm.Services
             //for each file: load into DS
             //otherwise, return empty DS or put an empty item in it?
             string[] contactFiles = Directory.GetFiles(contactPath);
+            //how can I get this to make/find the Contacts folder each time in the release directory?
             ObservableCollection<ContactItem> contactItems = new ObservableCollection<ContactItem>();
 
             foreach (string file in contactFiles)
