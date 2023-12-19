@@ -50,6 +50,18 @@ namespace Tests
             string contactPath = Path.Combine(baseDirectory, "Contacts");
             output.WriteLine("contactPath: " + contactPath);
         }
+
+        [Fact]
+        public void Test_ContactFolderExists() 
+        {
+            string baseDirectory = Directory.GetCurrentDirectory();
+            string contactPath = Path.Combine(baseDirectory, "Contacts");
+
+            if (!Directory.Exists(contactPath))
+            {
+                Directory.CreateDirectory(contactPath);
+            }
+        }
     }
 
     public class TestUI

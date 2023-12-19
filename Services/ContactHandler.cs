@@ -19,12 +19,20 @@ namespace willardcrm.Services
 
         //these all need to be try/catches to safely return if nulls/empty stuff comes up
         public string GetContactPath() {
+            /*
             string baseDirectory = AppDomain.CurrentDomain.BaseDirectory;
             //string baseDirectory = Directory.GetParent(AppDomain.CurrentDomain.BaseDirectory).Parent.Parent.Parent.Parent.FullName;
             //string contactPath = Path.Combine(baseDirectory, "Contacts");
             //string appMainDirectory = AppContext.BaseDirectory;
             string contactsFolderPath = ConfigurationManager.AppSettings["ContactsFolderPath"];
             string contactPath = Path.Combine(baseDirectory, "Contacts");
+            */
+
+            //string baseDirectory = AppDomain.CurrentDomain.BaseDirectory;
+            string baseDirectory = Directory.GetCurrentDirectory();
+            Console.WriteLine("baseDirectory: " + baseDirectory);
+            string contactPath = Path.Combine(baseDirectory, "Contacts");
+            Console.WriteLine("contactPath: " + contactPath);
 
             return contactPath;
             //manage this with a configuration setting for what's running, debug or build
@@ -67,6 +75,8 @@ namespace willardcrm.Services
             //otherwise, return empty DS or put an empty item in it?
             string[] contactFiles = Directory.GetFiles(contactPath);
             //how can I get this to make/find the Contacts folder each time in the release directory?
+            //write test for build and debug config to hit the right path
+            //or see if we can grab a current directory, make a contacts folder if it doesn't already exist, then read that
             ObservableCollection<ContactItem> contactItems = new ObservableCollection<ContactItem>();
 
             foreach (string file in contactFiles)
@@ -94,6 +104,11 @@ namespace willardcrm.Services
                 return false;
             }
             return true;
+        }
+
+        public void checkContactsFilder(string contactPath)
+        {
+
         }
 
         public void deleteContact(ContactItem contact)
