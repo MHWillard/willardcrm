@@ -399,3 +399,5 @@ FodyWeavers.xsd
 
 # Custom
 Contacts/*.json
+
+builds/

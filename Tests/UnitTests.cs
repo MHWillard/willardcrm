@@ -55,12 +55,16 @@ namespace Tests
         public void Test_ContactFolderExists() 
         {
             string baseDirectory = Directory.GetCurrentDirectory();
+            output.WriteLine("baseDirectory: " + baseDirectory);
             string contactPath = Path.Combine(baseDirectory, "Contacts");
+            output.WriteLine("contactPath: " + contactPath);
 
             if (!Directory.Exists(contactPath))
             {
                 Directory.CreateDirectory(contactPath);
             }
+
+            Assert.True(Directory.Exists(contactPath));
         }
     }
 

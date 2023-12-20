@@ -34,6 +34,11 @@ namespace willardcrm.Services
             string contactPath = Path.Combine(baseDirectory, "Contacts");
             Console.WriteLine("contactPath: " + contactPath);
 
+            if (!Directory.Exists(contactPath))
+            {
+                Directory.CreateDirectory(contactPath);
+            }
+
             return contactPath;
             //manage this with a configuration setting for what's running, debug or build
         }
@@ -104,11 +109,6 @@ namespace willardcrm.Services
                 return false;
             }
             return true;
-        }
-
-        public void checkContactsFilder(string contactPath)
-        {
-
         }
 
         public void deleteContact(ContactItem contact)
